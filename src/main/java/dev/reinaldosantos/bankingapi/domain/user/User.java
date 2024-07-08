@@ -17,13 +17,12 @@ import lombok.Setter;
 @EqualsAndHashCode
 @Entity
 @Table(name="users")
-public class UserModel {
+public class User {
     @GeneratedValue(generator = "UUID")
     @Id
     private UUID id;
     private String name;
     private String email;
     private String password;
-    private Boolean active;
-
+    private Boolean active = true;
 }
