@@ -1,6 +1,10 @@
 package dev.reinaldosantos.bankingapi.domain.user;
 
+import java.util.Collection;
 import java.util.UUID;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +21,7 @@ import lombok.Setter;
 @EqualsAndHashCode
 @Entity
 @Table(name="users")
-public class User {
+public class User implements UserDetails {
     @GeneratedValue(generator = "UUID")
     @Id
     private UUID id;
@@ -25,4 +29,15 @@ public class User {
     private String email;
     private String password;
     private Boolean active = true;
+    private String role;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+    }
+    @Override
+    public String getUsername() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getUsername'");
+    }
 }
