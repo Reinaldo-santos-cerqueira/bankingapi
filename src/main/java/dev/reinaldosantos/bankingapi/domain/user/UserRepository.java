@@ -1,8 +1,10 @@
 package dev.reinaldosantos.bankingapi.domain.user;
 
-import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepository extends JpaRepository<UserModel, UUID> {
-    
+import java.util.UUID;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, UUID> {
 }
