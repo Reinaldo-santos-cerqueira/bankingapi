@@ -17,6 +17,7 @@ public class UserService {
         userModel.setActive(true);
         userModel.setEmail(userDTO.getEmail());
         userModel.setName(userDTO.getName());
+        userModel.setRole(userDTO.getRole());
         userModel.setPassword(encrypt.encode(userDTO.getPassword()));
         return userRepository.save(userModel);
     }

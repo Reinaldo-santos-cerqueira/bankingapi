@@ -29,7 +29,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
     private Boolean active = true;
-    private String role;
+    private UserRole role;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // TODO Auto-generated method stub

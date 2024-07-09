@@ -1,7 +1,7 @@
 package dev.reinaldosantos.bankingapi.domain.user;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -25,4 +25,7 @@ public class UserDTO {
         message = "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
     )
     private String password;
+    @NotBlank(message = "Role is mandatory")
+    @Enumerated(EnumType.STRING)
+    private UserRole role; 
 }
