@@ -1,11 +1,8 @@
 package dev.reinaldosantos.bankingapi.domain.user;
 
 import java.util.Collection;
-import java.util.UUID;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -24,7 +21,7 @@ import lombok.Setter;
 public class User implements UserDetails {
     @GeneratedValue(generator = "UUID")
     @Id
-    private UUID id;
+    private String id;
     private String name;
     private String email;
     private String password;
