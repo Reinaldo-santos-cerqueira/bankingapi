@@ -4,6 +4,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import dev.reinaldosantos.bankingapi.exception.CustomNotFoundException;
 import dev.reinaldosantos.bankingapi.security.TokenService;
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +27,7 @@ public class UserService {
     }
 
     public String login(UserLoginDto userLoginDto){
-        User findUser = this.userRepository.findByEmail(userLoginDto.getEmail()).orElseThrow(()-> new RuntimeException("Email not found "));
+        User findUser = this.userRepository.findByEmail(userLoginDto.getEmail()).orElseThrow(()-> new CustomNotFoundException("Email not found "));
         if (passwordEncoder.matches(userLoginDto.getPassword(), findUser.getPassword())) {
             return this.tokenService.generateToken(findUser);
         } else {
