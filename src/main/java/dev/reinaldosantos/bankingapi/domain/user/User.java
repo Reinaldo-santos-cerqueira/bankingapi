@@ -1,11 +1,7 @@
 package dev.reinaldosantos.bankingapi.domain.user;
 
-import java.util.Collection;
 import java.util.UUID;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
