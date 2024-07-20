@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController()
 @RequestMapping("/user")
@@ -26,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, Object>> postMethodName(@Valid @RequestBody UserLoginDto userLoginDto) {
+    public ResponseEntity<Map<String, Object>> login(@Valid @RequestBody UserLoginDto userLoginDto) {
         Map<String, Object> response = new HashMap<>();
 
         String token = userService.login(userLoginDto);
@@ -37,5 +39,13 @@ public class UserController {
             response.put("token", token);
             return ResponseEntity.ok(response);
         }
+    }
+    
+    @PutMapping("/tradePassword/{id}")
+    public ResponseEntity<Map<String, Object>> changePassword(@PathVariable String id, @Valid @RequestBody UserLoginDto userLoginDto) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", this.userService.updatePassword(id,userLoginDto));
+
+        return ResponseEntity.ok(response);
     }
 }
