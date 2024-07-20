@@ -1,5 +1,7 @@
 package dev.reinaldosantos.bankingapi.domain.user;
 
+import java.util.UUID;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,19 @@ public class UserService {
             return this.tokenService.generateToken(findUser);
         } else {
             return "";
+        }
+    }
+
+    public String updatePassword(String id ,UserLoginDto userLoginDto){
+        User findUser = this.userRepository.findById(
+            UUID.fromString(id)
+        ).orElseThrow(()-> new CustomNotFoundException("Id not found "));
+        findUser.setPassword(encrypt.encode(userLoginDto.getPassword()));
+        try {
+            this.userRepository.save(findUser);
+            return "Salvo com sucesso";
+        } catch (Exception e) {
+            throw new Error(e.getMessage());
         }
     }
 }
